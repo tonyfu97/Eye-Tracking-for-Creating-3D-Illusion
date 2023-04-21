@@ -1,17 +1,21 @@
 # Compiler settings
 CXX = g++
-CXXFLAGS = -Wall -std=c++11 -Iinclude -Iinclude/CppUnitLite -I/opt/homebrew/Cellar/opencv/4.7.0_2/include/opencv4
+CXXFLAGS = -Wall -std=c++11 -Iinclude -Iinclude/CppUnitLite $(shell pkg-config --cflags opencv4)
 LDFLAGS = $(shell pkg-config --libs opencv4)
 
 # Directories
 SRC_DIR = src/main
 OBJ_DIR = obj
 BIN_DIR = bin
+CPPUNITLITE_DIR = include/CppUnitLite
 
 # Files
 SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
 OBJECTS = $(SOURCES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 EXECUTABLE = $(BIN_DIR)/main
+
+CPPUNITLITE_SOURCES = $(wildcard $(CPPUNITLITE_DIR)/*.cpp)
+CPPUNITLITE_OBJECTS = $(CPPUNITLITE_SOURCES:$(CPPUNITLITE_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 # Test-related variables
 TEST_DIR = src/test
@@ -20,10 +24,10 @@ TEST_OBJECTS = $(TEST_SOURCES:$(TEST_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 TEST_EXECUTABLE = $(BIN_DIR)/test_main
 
 # Main target
-all: $(EXECUTABLE) #$(TEST_EXECUTABLE)
+all: $(EXECUTABLE) $(TEST_EXECUTABLE)
 
 # Test target
-$(TEST_EXECUTABLE): $(TEST_OBJECTS) $(filter-out $(OBJ_DIR)/main.o,$(OBJECTS))
+$(TEST_EXECUTABLE): $(TEST_OBJECTS) $(filter-out $(OBJ_DIR)/main.o,$(OBJECTS)) $(CPPUNITLITE_OBJECTS)
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
 
@@ -36,6 +40,10 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/%.o: $(CPPUNITLITE_DIR)/%.cpp
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
