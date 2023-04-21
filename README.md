@@ -5,56 +5,7 @@ An interactive illusion of depth on a 2D screen by tracking the user's eye posit
 
 This project requires OpenCV version 4.7.0. Please ensure that you have this version installed on your system.
 
----
-
 ### Installation
-
-#### Linux
-
-To install OpenCV 4.7.0 on Linux, follow these steps:
-
-1. Install required packages:
-
-```
-sudo apt-get update
-sudo apt-get install -y build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-```
-
-2. Clone the OpenCV repository and checkout version 4.7.0:
-
-```
-git clone https://github.com/opencv/opencv.git
-cd opencv
-git checkout 4.7.0
-```
-
-3. Create a build directory and navigate to it:
-
-```
-mkdir build
-cd build
-```
-
-4. Run CMake to configure the build:
-
-```
-cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
-```
-
-5. Compile OpenCV:
-
-```
-make -j$(nproc)
-```
-
-6. Install OpenCV:
-
-```
-sudo make install
-sudo ldconfig
-```
-
----
 
 #### macOS
 
@@ -78,11 +29,8 @@ brew update
 brew install opencv@4.7.0
 ```
 
-4. Link the OpenCV version:
-
-```
-brew link --force opencv@4.7.0
-```
+4. Note that you might need to update the include path of your IDE to include
+this new directory. For example, OpenCV was installed at `/opt/homebrew/Cellar/opencv/4.7.0_2/include/opencv4` on my MacBook (you can find this path by using the terminal command `locate opencv`).
 
 ---
 

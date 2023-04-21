@@ -1,6 +1,7 @@
 # Compiler settings
 CXX = g++
-CXXFLAGS = -Wall -std=c++11 -Iinclude -Iinclude/CppUnitLite
+CXXFLAGS = -Wall -std=c++11 -Iinclude -Iinclude/CppUnitLite -I/opt/homebrew/Cellar/opencv/4.7.0_2/include/opencv4
+LDFLAGS = $(shell pkg-config --libs opencv4)
 
 # Directories
 SRC_DIR = src/main
@@ -19,12 +20,12 @@ TEST_OBJECTS = $(TEST_SOURCES:$(TEST_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 TEST_EXECUTABLE = $(BIN_DIR)/test_main
 
 # Main target
-all: $(EXECUTABLE) $(TEST_EXECUTABLE)
+all: $(EXECUTABLE) #$(TEST_EXECUTABLE)
 
 # Test target
 $(TEST_EXECUTABLE): $(TEST_OBJECTS) $(filter-out $(OBJ_DIR)/main.o,$(OBJECTS))
 	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp
 	@mkdir -p $(@D)
@@ -32,7 +33,7 @@ $(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp
 
 $(EXECUTABLE): $(OBJECTS)
 	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(@D)
