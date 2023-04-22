@@ -14,7 +14,7 @@
 
 const int CANVAS_HEIGHT = 50;
 const int CANVAS_WIDTH = 200;
-const int VIEWER_SMOOTHING_FACTOR = 0.1;
+const float VIEWER_SMOOTHING_FACTOR = 0.1;
 
 int main() {
     FaceDetector fd;
