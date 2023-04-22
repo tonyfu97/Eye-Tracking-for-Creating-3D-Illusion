@@ -1,14 +1,17 @@
+#include <string>
 #include <opencv2/opencv.hpp>
 #include "FaceDetector.h"
 #include "geometry_types.h"
 
-const int CAMERA_NUMBER = 1;  // change this based on your system.
+  // change the following based on your system.
+const int CAMERA_NUMBER = 1;
+const std::string REPO_DIR = "/Users/tonyfu/Desktop/OnlineCourses/C++Certificate/Eye-Tracking-for-Creating-3D-Illusion/";
 
 FaceDetector::FaceDetector()
     : cap_(CAMERA_NUMBER)
 {
-    net_ = cv::dnn::readNetFromCaffe("/Users/tonyfu/Desktop/OnlineCourses/C++Certificate/Eye-Tracking-for-Creating-3D-Illusion/models/deploy.prototxt",
-                                     "/Users/tonyfu/Desktop/OnlineCourses/C++Certificate/Eye-Tracking-for-Creating-3D-Illusion/models/res10_300x300_ssd_iter_140000.caffemodel");
+    net_ = cv::dnn::readNetFromCaffe(REPO_DIR + "models/deploy.prototxt",
+                                     REPO_DIR + "models/res10_300x300_ssd_iter_140000.caffemodel");
 
     // Check if the camera was opened successfully
     if (!cap_.isOpened())
