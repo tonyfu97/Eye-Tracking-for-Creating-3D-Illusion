@@ -62,13 +62,20 @@ git clone https://github.com/tonyfu97/Face-Tracking-for-Creating-3D-Illusion.git
 cd Face-Tracking-for-Creating-3D-Illusion
 ```
 
-2. Compile the project using the provided Makefile:
+2. Go to `src/main/FaceDetector.cpp`. Modify the two constants based on your system:
+
+```
+const int CAMERA_NUMBER = 1;  // replace to the number of the main camara if needed.
+const std::string REPO_DIR = "/path/to/repository/Face-Tracking-for-Creating-3D-Illusion/";
+```
+
+3. Compile the project using the provided Makefile:
 
 ```
 make
 ```
 
-3. Run the application:
+4. Run the application:
 
 ```
 ./bin/main
