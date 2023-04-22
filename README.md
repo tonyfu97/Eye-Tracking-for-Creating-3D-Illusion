@@ -7,6 +7,11 @@ An interactive illusion of depth on a 2D screen by tracking the user's face posi
 ![Demo (Up-Down)](images/demo-up-down.gif)
 ![Demo (Forward-Backward)](images/demo-forward-backward.gif)
 
+## Credits
+This project is inspired by Servet Gulnaroglu's YouTube video:
+
+[ASMR Programming - Spinning Cube - No Talking](https://youtu.be/p09i_hoFdd0)
+
 ## Dependencies
 
 This project requires OpenCV version 4.7.0. Please ensure that you have this version installed on your system.
