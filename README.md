@@ -58,8 +58,8 @@ To compile and run the application, follow these steps:
 1. Clone the repository and navigate to the project directory:
 
 ```
-git clone https://github.com/tonyfu97/Eye-Tracking-for-Creating-3D-Illusion.git
-cd Eye-Tracking-for-Creating-3D-Illusion
+git clone https://github.com/tonyfu97/Face-Tracking-for-Creating-3D-Illusion.git
+cd Face-Tracking-for-Creating-3D-Illusion
 ```
 
 2. Compile the project using the provided Makefile:
