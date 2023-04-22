@@ -18,8 +18,10 @@ public:
     Viewer(float smoothing_factor);
     void updateLocation(const cv::Rect& face_location);
     const Coordinates getViewerLocation() const;
+    const Rotations& getRotation() const;
+    float getSize() const;
 
 private:
-    float smoothing_factor_;
+    float smoothing_factor_;  // 0 = no smoothing; 1.0 = no update
     Coordinates viewer_location;
 };

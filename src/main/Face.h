@@ -15,6 +15,7 @@
 // The idea comes from: https://github.com/servetgulnaroglu/cube.c
 class Face {
 public:
+    friend class FaceTest;
     Face(const Rotations& init_rotation, char texture, int canvas_height, int canvas_width);
     
     void draw(std::vector<char>& canvas_buffer,

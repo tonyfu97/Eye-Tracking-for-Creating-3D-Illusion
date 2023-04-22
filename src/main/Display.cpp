@@ -3,9 +3,12 @@
 #include "Display.h"
 
 Display::Display(int height, int width)
-    : height_(height), width_(width) {}
+    : height_(height), width_(width)
+{
+    std::cout << "\x1b[2J";
+}
 
-void Display::display(std::vector<char>& canvas_buffer)
+void Display::display(const std::vector<char>& canvas_buffer)
 {
     std::cout << "\x1b[H";
     for (int idx{0}; idx < canvas_buffer.size(); ++idx) {

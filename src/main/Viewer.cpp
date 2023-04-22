@@ -1,3 +1,4 @@
+#include <cmath>
 #include "Viewer.h"
 #include "geometry_types.h"
 
@@ -21,6 +22,19 @@ void Viewer::updateLocation(const cv::Rect& face_location)
                         + y_center * (1 - smoothing_factor_);
     viewer_location.z = viewer_location.z * smoothing_factor_
                         + z_estimate * (1 - smoothing_factor_);
+}
+
+const Rotations& Viewer::getRotation() const
+{
+    Rotations r;
+    r.A = (viewer_location.y / 1000.0) * M_PI;
+    r.B = (viewer_location.x / 6400.0) * M_PI;
+    return r;
+}
+
+float Viewer::getSize() const
+{
+    return viewer_location.z / 5.0;
 }
 
 const Coordinates Viewer::getViewerLocation() const

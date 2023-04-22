@@ -1,35 +1,45 @@
+// File: main.cpp
+// Description: Detect face location, and rotate/scale a cube based on viewing position.
+// Author: Tony Fu
+// Date: 2023-04-18
+
+#include <iostream>
+#include <unistd.h>
 #include "Cube.h"
 #include "Face.h"
 #include "Display.h"
 #include "FaceDetector.h"
 #include "Viewer.h"
-#include "Controller.h"
+#include "geometry_types.h"
+
+const int CANVAS_HEIGHT = 50;
+const int CANVAS_WIDTH = 200;
+const int VIEWER_SMOOTHING_FACTOR = 0.1;
 
 int main() {
-    // // Initialize classes
-    // EyeDetector eyeDetector;
-    // Viewer viewer;
-    // Controller controller(viewer);
-    // Display display;
-    // Cube cube;
+    FaceDetector fd;
+    Viewer viewer(VIEWER_SMOOTHING_FACTOR);
+    Display display(CANVAS_HEIGHT, CANVAS_WIDTH);
+    Cube cube(CANVAS_HEIGHT, CANVAS_WIDTH);
 
-    // // Main loop
-    // while (true) {
-    //     // Update eye position using EyeDetector
-    //     eyeDetector.update();
+    cv::Rect face_location;
+    Rotations cube_rotations;
+    float cube_size;
 
-    //     // Update viewer's angle and distance based on eye position
-    //     viewer.update(eyeDetector.getEyePosition());
+    while (true) {
+        face_location = fd.getFaceRect();
+        viewer.updateLocation(face_location);
+        cube_rotations = viewer.getRotation();
+        cube_size = viewer.getSize();
 
-    //     // Update the cube's position and rotation based on the viewer
-    //     cube.update(viewer.getViewingAngle(), viewer.getViewingDistance());
+        cube.draw(cube_rotations, cube_size);
+        display.display(cube.get_canvas());
 
-    //     // Render the cube using the Display class
-    //     display.render(cube.getAsciiRepresentation());
-
-    //     // Process user input (e.g., keyboard input)
-    //     controller.processInput();
-    // }
-
+        int key = cv::waitKey(100);
+        if (key == 'q' || key == 'Q') {
+            break;
+        }
+        usleep(8000);
+    }
     return 0;
 }
