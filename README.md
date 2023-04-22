@@ -1,7 +1,11 @@
 # Face-Tracking-for-Creating-3D-Illusion
 An interactive illusion of depth on a 2D screen by tracking the user's face position and adjusting the virtual viewing angle of the displayed object.
 
+## Demos
 ![Demo](images/demo.gif)
+![Demo (Left-Right)](images/demo-left-right.gif)
+![Demo (Up-Down)](images/demo-up-down.gif)
+![Demo (Forward-Backward)](images/demo-forward-backward.gif)
 
 ## Dependencies
 
