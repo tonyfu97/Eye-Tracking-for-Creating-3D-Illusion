@@ -2,6 +2,12 @@
 #include "Viewer.h"
 #include "geometry_types.h"
 
+// Rotation sensitivity: Larger sensitivity = cube more sensitive to head movement.
+const float UP_DOWN_SENSITIVITY = 1 / 1200.0;
+const float LEFT_RIGHT_SENSITIVITY = 1 / 6400.0;
+// Size sensitivity: larger value = cube change size more dramatically
+const float FORWARD_BACKWARD_SENSITIVITY = 1 / 5.0;
+
 Viewer::Viewer(float smoothing_factor): smoothing_factor_(smoothing_factor)
 {
     viewer_location.x = 0;
@@ -27,14 +33,14 @@ void Viewer::updateLocation(const cv::Rect& face_location)
 const Rotations& Viewer::getRotation() const
 {
     Rotations r;
-    r.A = (viewer_location.y / 1000.0) * M_PI;
-    r.B = (viewer_location.x / 6400.0) * M_PI;
+    r.A = (viewer_location.y * UP_DOWN_SENSITIVITY) * M_PI;
+    r.B = (viewer_location.x * LEFT_RIGHT_SENSITIVITY) * M_PI;
     return r;
 }
 
 float Viewer::getSize() const
 {
-    return viewer_location.z / 5.0;
+    return viewer_location.z * FORWARD_BACKWARD_SENSITIVITY;
 }
 
 const Coordinates Viewer::getViewerLocation() const

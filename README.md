@@ -65,7 +65,7 @@ cd Face-Tracking-for-Creating-3D-Illusion
 2. Go to `src/main/FaceDetector.cpp`. Modify the two constants based on your system:
 
 ```
-const int CAMERA_NUMBER = 1;  // replace to the number of the main camara if needed.
+const int CAMERA_NUMBER = 1;  // replace with the number of the main camara if needed.
 const std::string REPO_DIR = "/path/to/repository/Face-Tracking-for-Creating-3D-Illusion/";
 ```
 
@@ -79,4 +79,14 @@ make
 
 ```
 ./bin/main
+```
+
+5. (Optional) Fine tune the rotation and size sensitivities (in `src/main/Viewer.cpp`) to maximize the illusion of depth.
+
+```
+// Rotation sensitivity: Larger sensitivity = cube more sensitive to head movement.
+const float UP_DOWN_SENSITIVITY = 1 / 1200.0;
+const float LEFT_RIGHT_SENSITIVITY = 1 / 6400.0;
+// Size sensitivity: larger value = cube change size more dramatically
+const float FORWARD_BACKWARD_SENSITIVITY = 1 / 5.0;
 ```
