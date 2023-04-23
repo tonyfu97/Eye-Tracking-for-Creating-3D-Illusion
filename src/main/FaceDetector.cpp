@@ -3,7 +3,7 @@
 #include "FaceDetector.h"
 #include "geometry_types.h"
 
-  // change the following based on your system.
+// change the following based on your system.
 const int CAMERA_NUMBER = 1;
 const std::string REPO_DIR = "/Users/tonyfu/Desktop/OnlineCourses/C++Certificate/Eye-Tracking-for-Creating-3D-Illusion/";
 

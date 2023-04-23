@@ -12,9 +12,9 @@
 class Display
 {
 public:
-    Display(int height, int width);
-    void display(const std::vector<char>& canvas_buffer);
+    Display(int width);
+    void display(const std::vector<char>& canvas_buffer) const;
 
 private:
-    int height_, width_;
+    int width_;
 };

@@ -19,7 +19,7 @@ const float VIEWER_SMOOTHING_FACTOR = 0.1;
 int main() {
     FaceDetector fd;
     Viewer viewer(VIEWER_SMOOTHING_FACTOR);
-    Display display(CANVAS_HEIGHT, CANVAS_WIDTH);
+    Display display(CANVAS_WIDTH);
     Cube cube(CANVAS_HEIGHT, CANVAS_WIDTH);
 
     cv::Rect face_location;

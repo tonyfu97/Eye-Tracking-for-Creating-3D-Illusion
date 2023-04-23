@@ -5,11 +5,13 @@
 
 class FaceTest {
 public:
-    static Coordinates testRotate3d(Face& face, const Coordinates& p, const Rotations& r) {
+    static Coordinates testRotate3d(Face& face, const Coordinates& p, const Rotations& r)
+    {
         return face.rotate3d(p, r);
     }
 
-    static Coordinates testProspectiveProjection(Face& face, const Coordinates& p) {
+    static Coordinates testProspectiveProjection(Face& face, const Coordinates& p)
+    {
         return face.prospectiveProjection(p);
     }
 };

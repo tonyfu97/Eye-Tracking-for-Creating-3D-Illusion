@@ -28,6 +28,6 @@ private:
     char texture_;
     int canvas_height_, canvas_width_;
     
-    Coordinates rotate3d(const Coordinates& p, const Rotations& r);
-    Coordinates prospectiveProjection(const Coordinates& p);
+    Coordinates rotate3d(const Coordinates& p, const Rotations& r) const;
+    Coordinates prospectiveProjection(const Coordinates& p) const;
 };

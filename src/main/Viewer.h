@@ -18,7 +18,7 @@ public:
     Viewer(float smoothing_factor);
     void updateLocation(const cv::Rect& face_location);
     const Coordinates getViewerLocation() const;
-    const Rotations& getRotation() const;
+    Rotations getRotation() const;
     float getSize() const;
 
 private:
